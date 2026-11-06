@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkku - Hub Resmi Kami</title>
+    <!-- Google Fonts & FontAwesome untuk Ikon -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 35px 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        /* Bagian Profil */
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #6366f1;
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .profile-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .profile-bio {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        /* Daftar Tautan (Links) */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px 20px;
+            border-radius: 14px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #6366f1;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .link-content i {
+            font-size: 1.3rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Warna Khusus Tombol */
+        .link-btn.whatsapp i { color: #25d366; }
+        
+        /* Warna Ikon TikTok (Kombinasi Cyan & Pink) */
+        .link-btn.tiktok i {
+            background: linear-gradient(45deg, #25F4EE, #FE2C55);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Warna Ikon SociaBuzz (Oranye khas SociaBuzz) */
+        .link-btn.sociabuzz i { color: #ff8400; }
+
+        /* Footer */
+        .footer {
+            margin-top: 35px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Foto Profil & Nama -->
+        <img src="https://cdn.discordapp.com/attachments/1567899795048108222/1568160895203278950/IMG-20261106-WA0000.jpg?ex=6aeecf24&is=6aed7da4&hm=6ff741aee9bc6b65f18bdd80560c0746ec4c3c3d553786c546ccd18e8d217208&" alt="Foto Profil" class="profile-img">
+        <h1 class="profile-name">B4CON TIMS</h1>
+        <p class="profile-bio">Offcials Links B4CON Tims Join Sl Kalo Mau Info Antri Kalian.</p>
+
+        <!-- Daftar Tombol Tautan -->
+        <div class="links-container">
+            
+            <!-- Saluran WhatsApp -->
+            <a href="https://whatsapp.com/channel/0029Vb9JzwlC6ZvdDNE6sS1N" target="_blank" class="link-btn whatsapp">
+                <div class="link-content">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Saluran WhatsApp</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: #64748b;"></i>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://tiktok.com/@januarijanu70" target="_blank" class="link-btn tiktok">
+                <div class="link-content">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <span>TikTok</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: #64748b;"></i>
+            </a>
+
+            <!-- SociaBuzz -->
+            <a href="https://sociabuzz.com/b4con/tribe" target="_blank" class="link-btn sociabuzz">
+                <div class="link-content">
+                    <i class="fa-solid fa-fire"></i>
+                    <span>SociaBuzz</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: #64748b;"></i>
+            </a>
+
+        </div>
+
+        <!-- Bagian Footer -->
+        <div class="footer">
+            &copy; 2026 B4CON TIMS. OFFCIALS.
+        </div>
+    </div>
+
+</body>
+</html>
