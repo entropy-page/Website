@@ -1,186 +1,256 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
+    <script>
+        if (window.location.pathname.endsWith('index.html')) {
+            window.location.replace(window.location.pathname.replace(/index\.html$/, '') + window.location.search + window.location.hash);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linkku - Hub Resmi Kami</title>
-    <!-- Google Fonts & FontAwesome untuk Ikon -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 35px 25px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            text-align: center;
-        }
-
-        /* Bagian Profil */
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #6366f1;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-        }
-
-        .profile-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .profile-bio {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            margin-bottom: 30px;
-        }
-
-        /* Daftar Tautan (Links) */
-        .links-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .link-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 14px 20px;
-            border-radius: 14px;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .link-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: #6366f1;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
-        }
-
-        .link-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .link-content i {
-            font-size: 1.3rem;
-            width: 25px;
-            text-align: center;
-        }
-
-        /* Warna Khusus Tombol */
-        .link-btn.whatsapp i { color: #25d366; }
-        
-        /* Warna Ikon TikTok (Kombinasi Cyan & Pink) */
-        .link-btn.tiktok i {
-            background: linear-gradient(45deg, #25F4EE, #FE2C55);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .link-btn.sociabuzz i { color: #ff8400; }
-        
-        /* Warna Ikon Roblox (Merah khas Roblox) */
-        .link-btn.roblox i { color: #e2231a; }
-
-        /* Footer */
-        .footer {
-            margin-top: 35px;
-            font-size: 0.8rem;
-            color: #64748b;
-        }
-    </style>
+    <title>Leaf's Scripts</title>
+    <link rel="icon" type="image/png" href="https://yt3.googleusercontent.com/lxpJQz3QU7u-_NeTZVzQOphQHKW4Klu82r9ATc8bYCUrjd4FdOpS-nD0KF--YEXCfQEet5GV=s160-c-k-c0x00ffffff-no-rj">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css">
 </head>
 <body>
-
-    <div class="container">
-        <!-- Foto Profil & Nama -->
-        <img src="https://cdn.discordapp.com/attachments/1567899795048108222/1568160895203278950/IMG-20261106-WA0000.jpg?ex=6aeecf24&is=6aed7da4&hm=6ff741aee9bc6b65f18bdd80560c0746ec4c3c3d553786c546ccd18e8d217208&" alt="Foto Profil" class="profile-img">
-        <h1 class="profile-name">B4CON TIMS</h1>
-        <p class="profile-bio">Temukan semua tautan resmi dan informasi penting kami di sini.</p>
-
-        <!-- Daftar Tombol Tautan -->
-        <div class="links-container">
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <button class="brand" onclick="navigate('')" style="background:none;border:none;padding:0;cursor:pointer">
+                    <img src="https://yt3.googleusercontent.com/lxpJQz3QU7u-_NeTZVzQOphQHKW4Klu82r9ATc8bYCUrjd4FdOpS-nD0KF--YEXCfQEet5GV=s160-c-k-c0x00ffffff-no-rj" class="nav-icon" alt="Icon">
+                    <span class="nav-title" style="color: #ffffff;">Leaf's Scripts</span>
+                </button>
+            </div>
             
-            <!-- Saluran WhatsApp -->
-            <a href="https://whatsapp.com/channel/0029Vb9JzwlC6ZvdDNE6sS1N" target="_blank" class="link-btn whatsapp">
-                <div class="link-content">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <span>Saluran WhatsApp</span>
+            <div class="nav-center">
+                <div class="search-wrapper">
+                    <i data-lucide="search" class="search-icon" width="16" height="16"></i>
+                    <input type="text" id="search" placeholder="Search scripts..." aria-label="Search scripts" aria-autocomplete="list">
+                    <div id="search-suggestions" class="search-suggestions" role="listbox"></div>
                 </div>
-                <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: #64748b;"></i>
-            </a>
+            </div>
 
-            <!-- TikTok -->
-            <a href="https://tiktok.com/@januarijanu70" target="_blank" class="link-btn tiktok">
-                <div class="link-content">
-                    <i class="fa-brands fa-tiktok"></i>
-                    <span>TikTok</span>
+            <div class="nav-right">
+                <div id="auth-section">
+                    <button class="btn btn-secondary btn-sm" onclick="app.toggleLoginModal()">Login</button>
                 </div>
-                <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: #64748b;"></i>
-            </a>
-
-            <!-- SociaBuzz -->
-            <a href="https://sociabuzz.com/b4con/tribe" target="_blank" class="link-btn sociabuzz">
-                <div class="link-content">
-                    <i class="fa-solid fa-fire"></i>
-                    <span>SociaBuzz</span>
+                <div id="user-section" style="display:none">
+                    <button class="btn btn-primary btn-sm" onclick="navigate('admin')">Manage</button>
                 </div>
-                <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: #64748b;"></i>
-            </a>
-
-            <!-- Private Server Roblox -->
-            <a href="https://www.roblox.com/share?code=870b01fb495bd34cb59d1bc1753bee60&type=Server" target="_blank" class="link-btn roblox">
-                <div class="link-content">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <span>Private Server</span>
-                </div>
-                <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: #64748b;"></i>
-            </a>
-
+            </div>
         </div>
-
-        <!-- Bagian Footer -->
-        <div class="footer">
-            &copy; 2026 B4CON TIMS. All rights reserved.
+    </nav>
+    
+    <div id="login-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this) app.toggleLoginModal()">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Login</h3>
+                <button class="close-btn" onclick="app.toggleLoginModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-token" class="input-field" placeholder="ghp_..." autocomplete="off" onkeypress="if(event.key==='Enter') app.login()">
+                </div>
+                <div id="login-error" role="alert" aria-live="polite" style="color:var(--color-danger);font-size:13px;margin:16px 0;text-align:center;display:none"></div>
+                <button class="btn btn-full" onclick="app.login()">Enter</button>
+            </div>
         </div>
     </div>
 
-</body>
-</html>
+    <div class="container">
+        <div id="view-home" class="view-section" style="display:block">
+            <div class="content-wrapper">
+                <aside class="sidebar">
+                    <div class="sidebar-links">
+                            <a href="#" class="sidebar-link active" data-filter="all" onclick="event.preventDefault(); app.filterCategory('all', event)">
+                                <i data-lucide="home" width="16" height="16"></i>
+                                All Scripts
+                            </a>
+                            <a href="#" class="sidebar-link" data-filter="public" onclick="event.preventDefault(); app.filterCategory('public', event)">
+                                <i data-lucide="globe" width="16" height="16"></i>
+                                Public
+                            </a>
+                            <select id="sort-select" class="sidebar-sort" aria-label="Sort scripts" onchange="app.setSort(this.value)">
+                                <option value="created">Newest</option>
+                                <option value="updated">Recently updated</option>
+                                <option value="az">Title A → Z</option>
+                                <option value="za">Title Z → A</option>
+                            </select>
+                            <a href="#" class="sidebar-link" id="private-filter" style="display:none" data-filter="private" onclick="event.preventDefault(); app.filterCategory('private', event)">
+                                <i data-lucide="lock" width="16" height="16"></i>
+                                Private
+                            </a>
+                            <a href="#" class="sidebar-link" id="unlisted-filter" style="display:none" data-filter="unlisted" onclick="event.preventDefault(); app.filterCategory('unlisted', event)">
+                                <i data-lucide="file-text" width="16" height="16"></i>
+                                Unlisted
+                            </a>
+                    </div>
+                </aside>
+                
+                <main class="main-content">
+                    <div class="script-grid" id="script-list">
+                        <div style="text-align:center;padding:60px 0;grid-column:1/-1">
+                            <div class="spinner"></div>
+                            <p>Loading library...</p>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div id="view-admin" class="view-section" style="display:none">
+            <div class="admin-panel">
+                <div class="admin-header-flex">
+                    <h2>Admin Panel</h2>
+                    <div class="tab-switcher">
+                        <button class="tab-btn active" data-tab="list" onclick="app.switchAdminTab('list')">
+                            <i data-lucide="home" width="14" height="14"></i>
+                            Manage
+                        </button>
+                        <button class="tab-btn" data-tab="create" onclick="app.switchAdminTab('create')">
+                            <i data-lucide="plus" width="14" height="14"></i>
+                            Add New
+                        </button>
+                        <button class="tab-btn" data-tab="bots" onclick="app.switchAdminTab('bots')">
+                            <i data-lucide="bot" width="14" height="14"></i>
+                            Bots
+                        </button>
+                        <button class="tab-btn" onclick="app.logout()" aria-label="Logout" title="Logout">
+                            <i data-lucide="log-out" width="14" height="14"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+
+                <div id="admin-tab-editor" class="admin-tab" style="display:none">
+                    <div class="editor-container">
+                        <h3 id="editor-heading">Create New Script</h3>
+                        <div class="form-row">
+                            <div class="form-group form-group-flex">
+                                <label>Script Title</label>
+                                <input type="text" id="edit-title" class="input-field" placeholder="e.g. Advanced NPC System">
+                            </div>
+                            <div class="form-group">
+                                <label>Visibility</label>
+                                <select id="edit-visibility" class="input-field">
+                                    <option value="PUBLIC">Public</option>
+                                    <option value="PRIVATE">Private</option>
+                                    <option value="UNLISTED">Unlisted</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group form-group-flex">
+                                <label>Description</label>
+                                <textarea id="edit-desc" class="input-field" rows="4" placeholder="Briefly describe your script..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Expiration</label>
+                                <div class="expiration-row">
+                                    <input type="datetime-local" id="edit-expiration" class="input-field">
+                                    <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('edit-expiration').value=''">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label>Lua Source</label>
+                            <textarea id="edit-code" class="input-field code-textarea"></textarea>
+                        </div>
+    
+                        <div class="editor-actions">
+                            <div class="action-buttons">
+                                <button class="btn btn-secondary" onclick="app.switchAdminTab('list')">Cancel</button>
+                                <button class="btn" onclick="app.saveScript()">Publish</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="admin-tab-list" class="admin-tab" style="display:block">
+                    <div class="admin-list-header">
+                        <h3>Existing Scripts</h3>
+                        <span id="total-stats">Loading...</span>
+                    </div>
+                    <div id="admin-list"></div>
+                </div>
+
+                <div id="admin-tab-bots" class="admin-tab" style="display:none">
+                    <div class="admin-list-header">
+                        <h3>Bot Posts</h3>
+                        <button class="btn btn-sm" onclick="app.switchAdminTab('create-bot')">
+                            <i data-lucide="plus" width="12" height="12"></i>
+                            Create Bot
+                        </button>
+                    </div>
+                    <div id="bots-list"></div>
+                </div>
+
+                <div id="admin-tab-bot-editor" class="admin-tab" style="display:none">
+                    <div class="bot-form-container">
+                        <h3 id="bot-editor-heading">Create New Bot</h3>
+                        <div class="form-group">
+                            <label>Post Title</label>
+                            <input type="text" id="bot-title" class="input-field" placeholder="Thread title for Discord">
+                        </div>
+                        <div class="form-group">
+                            <label>Message Content</label>
+                            <textarea id="bot-message" class="input-field" rows="4" placeholder="Message to send to Discord"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bot-schedule" onchange="app.toggleScheduleFields()">
+                                Schedule Post
+                            </label>
+                        </div>
+                        <div id="schedule-fields" class="schedule-fields">
+                            <div class="form-group">
+                                <label>Scheduled Time</label>
+                                <input type="datetime-local" id="bot-schedule-time" class="input-field">
+                            </div>
+                            <div class="form-group">
+                                <label>Timezone</label>
+                                <select id="bot-timezone" class="input-field">
+                                    <option value="UTC">UTC</option>
+                                    <option value="America/New_York">Eastern Time (ET)</option>
+                                    <option value="America/Chicago">Central Time (CT)</option>
+                                    <option value="America/Denver">Mountain Time (MT)</option>
+                                    <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                                    <option value="Europe/London">London (GMT)</option>
+                                    <option value="Europe/Paris">Paris (CET)</option>
+                                    <option value="Asia/Tokyo">Tokyo (JST)</option>
+                                    <option value="Australia/Sydney">Sydney (AEST)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="bot-actions">
+                            <div class="action-buttons">
+                                <button class="btn btn-secondary" onclick="app.switchAdminTab('bots')">Cancel</button>
+                                <button class="btn" onclick="app.saveBot()">Send Bot</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/lua/lua.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0/dist/fuse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.462.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.13.5/dist/motion.min.js"></script>
+    <script src="app.js"></script></body>
+                            </html>
