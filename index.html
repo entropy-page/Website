@@ -467,10 +467,10 @@
                                     <span>Lua Script</span>
                                     <div class="toolbar-right">
                                         ${tutorialBtnHtml}
-                                        <button class="btn btn-sm" onclick="navigator.clipboard.writeText(` + "`" + `${script.code}` + "`" + `); Toastify({text:'Copied to clipboard!'}).showToast()">Copy Code</button>
+                                        <button class="btn btn-sm" onclick="app.copyCode(this)">Copy Code</button>
                                     </div>
                                 </div>
-                                <pre><code>${script.code}</code></pre>
+                                <pre><code id="script-code-text">${escapeHtml(script.code)}</code></pre>
                             </div>
                         `;
                     }
@@ -484,6 +484,13 @@
                 } else {
                     document.getElementById('view-home').style.display = 'block';
                 }
+            },
+
+            copyCode(btn) {
+                const codeText = document.getElementById('script-code-text').innerText;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    Toastify({ text: 'Copied to clipboard!', background: "#eab308", color: "#000" }).showToast();
+                });
             },
 
             switchAdminTab(tab) {
@@ -623,6 +630,10 @@
                 `).join('');
             }
         };
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
 
         app.init();
     </script>
