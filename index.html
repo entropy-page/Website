@@ -9,8 +9,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock's Script</title>
-    <!-- Favicon menggunakan Base64 agar aman dan tidak terblokir -->
-    <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=">
+    <!-- Favicon menggunakan gambar dari ImgBB Anda -->
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co.com/XZJcwxzw/0f94800fa0049e5dad9ebc027bd54e3c.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -71,7 +71,7 @@
 
         .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; background: none; border: none; padding: 0; }
         .brand:hover { opacity: 0.8; }
-        .nav-icon { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; background: #222; }
+        .nav-icon { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
         .nav-title { font-weight: 700; font-size: 18px; color: #ffffff; }
 
         .nav-center { flex: 1; display: flex; justify-content: center; padding: 0 32px; }
@@ -162,7 +162,7 @@
         <div class="nav-content">
             <div class="nav-left">
                 <button class="brand" onclick="app.navigate('')" style="background:none;border:none;padding:0;cursor:pointer">
-                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=" class="nav-icon" alt="Icon">
+                    <img src="https://i.ibb.co.com/XZJcwxzw/0f94800fa0049e5dad9ebc027bd54e3c.jpg" class="nav-icon" alt="Icon">
                     <span class="nav-title">Clock's Script</span>
                 </button>
             </div>
@@ -576,7 +576,7 @@
             setSort(val) {
                 this.currentSort = val;
                 if (val === 'created') {
-                    this.scripts.sort((a, b) => new Date(b.created) - new Date(b.created));
+                    this.scripts.sort((a, b) => new Date(b.created) - new Date(a.created));
                 } else if (val === 'az') {
                     this.scripts.sort((a, b) => a.title.localeCompare(b.title));
                 }
