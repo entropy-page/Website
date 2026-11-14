@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock's Script</title>
-    <!-- Favicon menggunakan gambar dari ImgBB Anda -->
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co.com/XZJcwxzw/0f94800fa0049e5dad9ebc027bd54e3c.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -116,7 +115,8 @@
         .badge-private { background: var(--surface-hover); color: var(--color-text-muted); border: 1px solid var(--color-border); }
 
         .code-box { background: var(--surface); border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; margin-top: 20px; }
-        .toolbar { background: var(--bg-secondary); border-bottom: 1px solid var(--color-border); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .toolbar { background: var(--bg-secondary); border-bottom: 1px solid var(--color-border); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .toolbar-right { display: flex; gap: 10px; }
         pre { margin: 0; padding: 24px; overflow-x: auto; background: #000000 !important; }
         code { font-family: 'Courier New', monospace; font-size: 13px; color: #fff; }
 
@@ -139,11 +139,13 @@
 
         .CodeMirror { background: #000000 !important; border: 1px solid var(--color-border); border-radius: 10px; font-family: 'Courier New', monospace; height: 350px !important; color: #fff; }
 
-        .btn { background: var(--color-primary); color: #000; border: none; padding: 11px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; transition: 0.2s; }
+        .btn { background: var(--color-primary); color: #000; border: none; padding: 11px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; transition: 0.2s; text-decoration: none; }
         .btn:hover { background: var(--color-primary-hover); }
         .btn-secondary { background: transparent; border: 1px solid var(--color-border); color: #fff; }
         .btn-secondary:hover { background: var(--surface); }
         .btn-delete { background: var(--color-danger); color: #fff; }
+        .btn-tutorial { background: #ff0000; color: #fff; }
+        .btn-tutorial:hover { background: #cc0000; }
 
         .admin-item { padding: 22px; background: var(--bg-secondary); border-radius: 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--color-border); }
         .spinner { width: 32px; height: 32px; border: 3px solid var(--color-border); border-top-color: var(--color-primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
@@ -262,6 +264,10 @@
                         <div class="form-group">
                             <label>Description</label>
                             <textarea id="edit-desc" class="input-field" placeholder="Briefly describe your script..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Tutorial Video Link (YouTube / TikTok - Optional)</label>
+                            <input type="text" id="edit-tutorial" class="input-field" placeholder="https://youtube.com/... or https://tiktok.com/...">
                         </div>
                         <div class="form-group">
                             <label>Lua Source</label>
@@ -446,6 +452,11 @@
                     const id = hash.split('/')[1];
                     const script = this.scripts.find(s => s.id === id);
                     if (script) {
+                        let tutorialBtnHtml = '';
+                        if (script.tutorial && script.tutorial.trim() !== '') {
+                            tutorialBtnHtml = `<a href="${script.tutorial}" target="_blank" class="btn btn-tutorial btn-sm">▶ Watch Tutorial</a>`;
+                        }
+
                         document.getElementById('script-detail-content').innerHTML = `
                             <div style="margin-bottom:20px;">
                                 <h1 style="font-size:32px;margin-bottom:10px;">${script.title}</h1>
@@ -454,7 +465,10 @@
                             <div class="code-box">
                                 <div class="toolbar">
                                     <span>Lua Script</span>
-                                    <button class="btn btn-sm" onclick="navigator.clipboard.writeText(` + "`" + `${script.code}` + "`" + `); Toastify({text:'Copied to clipboard!'}).showToast()">Copy Code</button>
+                                    <div class="toolbar-right">
+                                        ${tutorialBtnHtml}
+                                        <button class="btn btn-sm" onclick="navigator.clipboard.writeText(` + "`" + `${script.code}` + "`" + `); Toastify({text:'Copied to clipboard!'}).showToast()">Copy Code</button>
+                                    </div>
                                 </div>
                                 <pre><code>${script.code}</code></pre>
                             </div>
@@ -485,6 +499,7 @@
                     document.getElementById('edit-id').value = '';
                     document.getElementById('edit-title').value = '';
                     document.getElementById('edit-desc').value = '';
+                    document.getElementById('edit-tutorial').value = '';
                     document.getElementById('edit-visibility').value = 'PUBLIC';
                     if (this.codeMirrorInstance) {
                         this.codeMirrorInstance.setValue('');
@@ -503,6 +518,7 @@
                 const id = document.getElementById('edit-id').value;
                 const title = document.getElementById('edit-title').value.trim();
                 const desc = document.getElementById('edit-desc').value.trim();
+                const tutorial = document.getElementById('edit-tutorial').value.trim();
                 const visibility = document.getElementById('edit-visibility').value;
                 const code = this.codeMirrorInstance ? this.codeMirrorInstance.getValue() : document.getElementById('edit-code').value;
 
@@ -514,13 +530,14 @@
                 if (id) {
                     const idx = this.scripts.findIndex(s => s.id === id);
                     if (idx !== -1) {
-                        this.scripts[idx] = { ...this.scripts[idx], title, description: desc, visibility, code };
+                        this.scripts[idx] = { ...this.scripts[idx], title, description: desc, tutorial, visibility, code };
                     }
                 } else {
                     const newScript = {
                         id: Date.now().toString(),
                         title,
                         description: desc,
+                        tutorial,
                         visibility,
                         code,
                         created: new Date().toISOString()
@@ -542,6 +559,7 @@
                 document.getElementById('edit-id').value = script.id;
                 document.getElementById('edit-title').value = script.title;
                 document.getElementById('edit-desc').value = script.description || '';
+                document.getElementById('edit-tutorial').value = script.tutorial || '';
                 document.getElementById('edit-visibility').value = script.visibility;
                 if (this.codeMirrorInstance) {
                     this.codeMirrorInstance.setValue(script.code);
