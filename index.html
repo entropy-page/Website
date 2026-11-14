@@ -9,7 +9,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock's Script</title>
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1568549380779282525/1571186684463157328/0f94800fa0049e5dad9ebc027bd54e3c.jpg">
+    <!-- Favicon menggunakan Base64 agar aman dan tidak terblokir -->
+    <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -70,7 +71,7 @@
 
         .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; background: none; border: none; padding: 0; }
         .brand:hover { opacity: 0.8; }
-        .nav-icon { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+        .nav-icon { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; background: #222; }
         .nav-title { font-weight: 700; font-size: 18px; color: #ffffff; }
 
         .nav-center { flex: 1; display: flex; justify-content: center; padding: 0 32px; }
@@ -161,7 +162,7 @@
         <div class="nav-content">
             <div class="nav-left">
                 <button class="brand" onclick="app.navigate('')" style="background:none;border:none;padding:0;cursor:pointer">
-                    <img src="https://cdn.discordapp.com/attachments/1568549380779282525/1571186684463157328/0f94800fa0049e5dad9ebc027bd54e3c.jpg" class="nav-icon" alt="Icon">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=" class="nav-icon" alt="Icon">
                     <span class="nav-title">Clock's Script</span>
                 </button>
             </div>
@@ -290,7 +291,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/lua/lua.min.js"></script>
     <script>
-        // Konfigurasi JSONBin.io Private Bin & Master Key
         const JSONBIN_BIN_ID = "6af880d9ffd5d16053c13c87";
         const JSONBIN_MASTER_KEY = "$2a$10$7kUozSyzkNytbUxnN7/kv.xInV14ItUgvNAWdjKEswZ0M.DDWgL/e";
         const ADMIN_PASSWORD = "assassin";
@@ -576,7 +576,7 @@
             setSort(val) {
                 this.currentSort = val;
                 if (val === 'created') {
-                    this.scripts.sort((a, b) => new Date(b.created) - new Date(a.created));
+                    this.scripts.sort((a, b) => new Date(b.created) - new Date(b.created));
                 } else if (val === 'az') {
                     this.scripts.sort((a, b) => a.title.localeCompare(b.title));
                 }
